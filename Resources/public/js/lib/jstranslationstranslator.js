@@ -316,8 +316,8 @@
 
   this.Translator = (function() {
     var intervalFactory, intervalParser, intervalSymbolFactory, setFactory, translator;
-    if (typeof FUNDDY_JSTRANSLATIONS_LOCALE === 'undefined') {
-      throw new Error('Must define a locale at global var FUNDDY_JSTRANSLATIONS_LOCALE');
+    if (typeof FUNDDY_JSTRANSLATIONS_LOCALE === "undefined") {
+      throw new Error("Must define a locale as a variable at global scope 'FUNDDY_JSTRANSLATIONS_LOCALE'");
     }
     setFactory = new FUNDDY.JsTranslations.SetFactory();
     intervalFactory = new FUNDDY.JsTranslations.IntervalFactory();
