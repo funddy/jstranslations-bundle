@@ -105,7 +105,7 @@ Include translations
 
 Defining Your Own Translator
 ----------------------------
-What if you do not want to use the default "Translator" global var and define your own? Easy, include only routing
+What if you do not want to use the default "Translator" global var and define your own? Easy, include only translations
 runtime and define your own translator.
 ```html
 <script type="text/javascript" src="{{ path('funddy_jstranslations', {locale: app.request.locale}) }}"></script>
