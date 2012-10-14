@@ -1,0 +1,6 @@
+funddy_jstranslations:
+    pattern: /js/funddyjstranslations.{locale}.js
+    defaults: { _controller: funddy.jstranslations.controller.jstranslationscontroller:exportAction }
+    requirements:
+        _method: GET
+        _format: js

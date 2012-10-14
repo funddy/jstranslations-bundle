@@ -1,0 +1,5 @@
+services:
+    funddy.jstranslations.controller.jstranslationscontroller:
+        class: Funddy\Bundle\JsTranslationsBundle\Controller\JsTranslationsController
+        arguments:
+            - @funddy.jstranslations.service.jstranslationsexporter

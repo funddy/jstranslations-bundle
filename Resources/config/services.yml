@@ -1,0 +1,29 @@
+services:
+    funddy.jstranslations.service.jstranslationsexporter:
+        class: Funddy\Bundle\JsTranslationsBundle\TranslationsExporter\JsTranslationsExporter
+        arguments:
+            - @funddy.jstranslations.service.configuredtranslationsextractor
+            - @funddy.jstranslations.service.jsonserializer
+            - @templating
+
+    funddy.jstranslations.service.configuredtranslationsextractor:
+        class: Funddy\Bundle\JsTranslationsBundle\TranslationsExtractor\ConfiguredTranslationsExtractor
+        public: false
+        arguments:
+            - @translator
+            - @service_container
+
+    funddy.jstranslations.service.jsonserializer:
+        class: Symfony\Component\Serializer\Serializer
+        public: false
+        arguments:
+            - [@funddy.jstranslations.service.normalizer]
+            - [@funddy.jstranslations.service.jsonencoder]
+
+    funddy.jstranslations.service.normalizer:
+        class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
+        public: false
+
+    funddy.jstranslations.service.jsonencoder:
+        class: Symfony\Component\Serializer\Encoder\JsonEncoder
+        public: false
