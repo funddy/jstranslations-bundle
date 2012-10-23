@@ -21,7 +21,7 @@ Add the following to your composer.json file:
 ```json
 {
     "require": {
-        "funddy/jstranslations-bundle": ">=1.0.*"
+        "funddy/jstranslations-bundle": "1.0.*"
     }
 }
 ```
