@@ -25,6 +25,7 @@ Add the following to your composer.json file:
     }
 }
 ```
+
 Update the vendor libraries:
 
     curl -s http://getcomposer.org/installer | php
