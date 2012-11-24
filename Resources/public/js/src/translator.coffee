@@ -10,7 +10,7 @@ class root.FUNDDY.JsTranslations.Translator
   checkLocaleExists: ->
     throw new Error("There are no transactions with locale '#{@locale}'") unless (@locale of @translations)
 
-  trans: (id, parameters = {}) ->
+  trans: (id, parameters = {}) =>
     translation = @findTranslation(id)
     replaceParametersWithValues(translation, parameters)
 
@@ -19,14 +19,14 @@ class root.FUNDDY.JsTranslations.Translator
     @translations[@locale][id]
 
   checkIdExists: (id) ->
-    throw new Error("No transaction found for id '#{id}'") unless (id of @translations[@locale])
+    throw new Error("No translation found for id '#{id}'") unless (id of @translations[@locale])
 
   replaceParametersWithValues = (text, parameters) ->
     for index, parameter of parameters
       text = text.replace(index, parameter)
     text
 
-  transChoice: (id, number, parameters = {}) ->
+  transChoice: (id, number, parameters = {}) =>
     translation = @findTranslation(id)
     choices = splitIntoChoices(translation)
     return @selectAndProcessChoice(choices, number, parameters)
@@ -46,4 +46,4 @@ class root.FUNDDY.JsTranslations.Translator
       if (interval.contains(number))
         return replaceParametersWithValues(translation, parameters)
 
-    throw new Error("No translation found for id '#{id}' number '#{number}'")
+    throw new Error("Number #{number} not in choices")

@@ -1,8 +1,9 @@
 root = global ? @
 class root.FUNDDY.JsTranslations.Interval
 
-  POSITIVE_INFINITY = "+Inf"
+  POSITIVE_INFINITY = "Inf"
   NEGATIVE_INFINITY = "-Inf"
+  NUMBER_PATTERN = /\d+/
 
   constructor: (@leftSymbol, leftNumberString, rightNumberString, @rightSymbol) ->
     @leftNumber = parseNumber(leftNumberString)
@@ -11,11 +12,9 @@ class root.FUNDDY.JsTranslations.Interval
     throw new Error ("Left number must be lower or equal than right one") if @leftNumber > @rightNumber
 
   contains: (number) ->
-    if @numberFitsLeftAndRightConstraints(number)
-      return false
-    true
+    not @numberDoesNotFitLeftAndRightConstraints(number)
 
-  numberFitsLeftAndRightConstraints: (number) ->
+  numberDoesNotFitLeftAndRightConstraints: (number) ->
     @numberDoesNotFitLeftOpenConstraint(number) or @numberDoesNotFitLeftCloseConstraint(number) or
     @numberDoesNotFitRightOpenConstraint(number) or @numberDoesNotFitRightCloseConstraint(number)
 
@@ -32,10 +31,10 @@ class root.FUNDDY.JsTranslations.Interval
     @rightSymbol.isRightClose() and number > @rightNumber
 
   parseNumber = (string) ->
-    if (string is POSITIVE_INFINITY)
-      return Infinity
+    return Infinity if (string is POSITIVE_INFINITY)
+    return (-Infinity) if (string is NEGATIVE_INFINITY)
+    assertNumber(string)
+    parseFloat(string)
 
-    if (string is NEGATIVE_INFINITY)
-      return (-Infinity)
-
-    return parseFloat(string)
+  assertNumber = (string) ->
+    throw new Error("#{string} is not a number") unless NUMBER_PATTERN.test(string)

@@ -44,7 +44,13 @@ describe "IntervalParser", ->
   describe "#parse()", ->
 
     it "returns a Set object for a given set string", ->
-      intervalParser.parse("{0,3,4}").should.equal(IRRELEVANT_SET)
+      testSets = ["{0}", "{0,-3}", "{0,-3,4}"]
+      intervalParser.parse(set).should.equal(IRRELEVANT_SET) for set in testSets
 
     it "returns a Interval object for a given interval string", ->
-      intervalParser.parse("]1,+Inf]").should.equal(IRRELEVANT_INTERVAL)
+      testIntervals = ["]1,2]", "]1,2[", "[1,2]", "[1,2[", "]-1,2]", "]-Inf,Inf]"]
+      intervalParser.parse(interval).should.equal(IRRELEVANT_INTERVAL) for interval in testIntervals
+
+    it "throws parse error for malformed input", ->
+      malformedStrings = ["]1,", "{}", "}"]
+      expect(-> intervalParser.parse(malformedString)) for malformedString in malformedStrings

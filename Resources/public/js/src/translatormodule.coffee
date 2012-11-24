@@ -1,21 +1,18 @@
-@Translator = (->
+root = global ? @
+root.Translator = do ->
 
-  if (typeof(FUNDDY_JSTRANSLATIONS_LOCALE) is "undefined")
-    throw new Error("Must define a locale as a variable at global scope 'FUNDDY_JSTRANSLATIONS_LOCALE'")
+  throw new Error("Must define a locale as a variable at global scope 'FUNDDY_JSTRANSLATIONS_LOCALE'") unless root.FUNDDY_JSTRANSLATIONS_LOCALE
 
-  setFactory = new FUNDDY.JsTranslations.SetFactory()
-  intervalFactory = new FUNDDY.JsTranslations.IntervalFactory()
-  intervalSymbolFactory = new FUNDDY.JsTranslations.IntervalFactory()
-  intervalParser = new FUNDDY.JsTranslations.IntervalParser(setFactory, intervalFactory, intervalSymbolFactory)
+  setFactory = new root.FUNDDY.JsTranslations.SetFactory()
+  intervalFactory = new root.FUNDDY.JsTranslations.IntervalFactory()
+  intervalSymbolFactory = new root.FUNDDY.JsTranslations.IntervalSymbolFactory()
+  intervalParser = new root.FUNDDY.JsTranslations.IntervalParser(setFactory, intervalFactory, intervalSymbolFactory)
 
-  translator = new FUNDDY.JsTranslations.Translator(
+  translator = new root.FUNDDY.JsTranslations.Translator(
     intervalParser,
-    FUNDDY.JsTranslations.Translations,
-    FUNDDY_JSTRANSLATIONS_LOCALE
+    root.FUNDDY.JsTranslations.Translations,
+    root.FUNDDY_JSTRANSLATIONS_LOCALE
   )
 
-  return {
-    trans: translator.trans
-    transChoice: translator.transChoice
-  }
-)()
+  trans: translator.trans
+  transChoice: translator.transChoice

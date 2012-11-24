@@ -14,8 +14,12 @@ describe "Interval", ->
 
   describe "#constructor()", ->
 
-    it "throws an exception if leftNumber is higher than rightNumber", ->
+    it "throws exception if left number is higher than right number", ->
       expect(-> new FUNDDY.JsTranslations.Interval(leftIntervalSymbol, "20", "10", rightIntervalSymbol)).to.throw(Error)
+
+    it "throws exception while passing invalid format numbers", ->
+      invalidNumbers = ["a", "", "-"]
+      expect(-> new FUNDDY.JsTranslations.Interval(leftIntervalSymbol, invalidNumber, "10", rightIntervalSymbol)).to.throw(Error) for invalidNumber in invalidNumbers
 
   describe "#contains()", ->
 
@@ -45,5 +49,6 @@ describe "Interval", ->
       interval.contains(-100).should.equal(true)
 
     it "positive infinity works", ->
-      interval = new FUNDDY.JsTranslations.Interval(leftIntervalSymbol, "1", "+Inf", rightIntervalSymbol)
+      interval = new FUNDDY.JsTranslations.Interval(leftIntervalSymbol, "1", "Inf", rightIntervalSymbol)
       interval.contains(100).should.equal(true)
+

@@ -26,8 +26,8 @@ describe "Translator", ->
   translator = null
 
   beforeEach ->
-    dummyInterval = new FUNDDY.JsTranslations.Interval()
-    intervalParserStub = new root.FUNDDY.JsTranslations.IntervalParser()
+    dummyInterval = new FUNDDY.JsTranslations.Interval("{", "3", "3", "}")
+    intervalParserStub = new FUNDDY.JsTranslations.IntervalParser()
     translator = new FUNDDY.JsTranslations.Translator(intervalParserStub, translationsData, "es")
 
   describe "#trans()", ->
