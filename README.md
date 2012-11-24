@@ -116,7 +116,7 @@ runtime and define your own translator.
     var MyOwnTranslator = (function() {
         var setFactory = new FUNDDY.JsTranslations.SetFactory();
         var intervalFactory = new FUNDDY.JsTranslations.IntervalFactory();
-        var intervalSymbolFactory = new FUNDDY.JsTranslations.IntervalFactory();
+        var intervalSymbolFactory = new FUNDDY.JsTranslations.IntervalSymbolFactory();
         var intervalParser = new FUNDDY.JsTranslations.IntervalParser(
             setFactory,
             intervalFactory,
