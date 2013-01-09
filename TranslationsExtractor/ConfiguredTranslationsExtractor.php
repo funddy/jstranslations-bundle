@@ -23,16 +23,15 @@ class ConfiguredTranslationsExtractor implements TranslationsExtractor
     public function extractTranslations($locale)
     {
         $this->translator->loadLanguage($locale);
-        return $this->createTranslations();
+        return $this->createTranslations($locale);
     }
 
-    private function createTranslations()
+    private function createTranslations($locale)
     {
         $translations = array();
-        foreach ($this->translator->getCatalogues() as $catalogue) {
-            foreach ($this->container->getParameter('funddy.jstranslations.domains') as $domain) {
-                $translations = array_merge($translations, $catalogue->all($domain));
-            }
+        $catalogue = $this->translator->getCatalogue($locale);
+        foreach ($this->container->getParameter('funddy.jstranslations.domains') as $domain) {
+            $translations = array_merge($translations, $catalogue->all($domain));
         }
         return $translations;
     }

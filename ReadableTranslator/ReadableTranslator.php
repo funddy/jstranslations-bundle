@@ -8,7 +8,7 @@ namespace Funddy\Bundle\JsTranslationsBundle\ReadableTranslator;
  */
 interface ReadableTranslator
 {
-    public function getCatalogues();
+    public function getCatalogue($locale);
 
-    public function loadLanguage($language);
+    public function loadLanguage($locale);
 }

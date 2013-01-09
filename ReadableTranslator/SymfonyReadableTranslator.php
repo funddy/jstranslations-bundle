@@ -10,13 +10,18 @@ use Symfony\Bundle\FrameworkBundle\Translation\Translator;
  */
 class SymfonyReadableTranslator extends Translator implements ReadableTranslator
 {
-    public function getCatalogues()
+    public function getCatalogue($locale)
     {
-        return $this->catalogues;
+        foreach ($this->catalogues as $catalogue) {
+            if ($catalogue->getLocale() === $locale) {
+                return $catalogue;
+            }
+        }
+        throw new CatalogueNotFound($locale);
     }
 
-    public function loadLanguage($language)
+    public function loadLanguage($locale)
     {
-        $this->loadCatalogue($language);
+        $this->loadCatalogue($locale);
     }
 }

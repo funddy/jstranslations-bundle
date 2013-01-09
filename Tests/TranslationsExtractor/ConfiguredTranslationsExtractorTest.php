@@ -37,12 +37,11 @@ class ConfiguredTranslationsExtractorTest extends \PHPUnit_Framework_TestCase
     {
         $this->readableTranslatorLoadLanguageShouldBeCalled();
         $this->containerGetParameterShouldBeCalled();
-        $this->readableTranslatorGetCataloguesShouldBeCalled();
+        $this->readableTranslatorGetCatalogueShouldBeCalled();
 
-        $this->assertThat(
-            $this->configuredTranslationsExtractor->extractTranslations(self::IRRELEVANT_LOCALE),
-            $this->identicalTo(self::$IRRELEVANT_TRANSLATIONS)
-        );
+        $translations = $this->configuredTranslationsExtractor->extractTranslations(self::IRRELEVANT_LOCALE);
+
+        $this->assertThat($translations, $this->identicalTo(self::$IRRELEVANT_TRANSLATIONS));
     }
 
     private function readableTranslatorLoadLanguageShouldBeCalled()
@@ -60,12 +59,12 @@ class ConfiguredTranslationsExtractorTest extends \PHPUnit_Framework_TestCase
             ->andReturn(array(self::IRRELEVANT_DOMAIN));
     }
 
-    private function readableTranslatorGetCataloguesShouldBeCalled()
+    private function readableTranslatorGetCatalogueShouldBeCalled()
     {
         $this->readableTranslatorMock
-            ->shouldReceive('getCatalogues')
-            ->withNoArgs()->once()
-            ->andReturn(array($this->createCatalogueMock()));
+            ->shouldReceive('getCatalogue')
+            ->with(self::IRRELEVANT_LOCALE)->once()
+            ->andReturn($this->createCatalogueMock());
     }
 
     private function createCatalogueMock()
