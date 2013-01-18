@@ -15,8 +15,8 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/framework-bundle": "2.1.*",
-        "symfony/serializer": ">=2.0,<2.2-dev"
+        "symfony/framework-bundle": ">=2.0,<2.3-dev",
+        "symfony/serializer": ">=2.0,<2.3-dev"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
