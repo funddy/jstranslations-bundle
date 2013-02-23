@@ -9,8 +9,7 @@
     "authors": [
         {
             "name": "Keyvan Akbary",
-            "email": "keyvan@funddy.com",
-            "homepage": "http://keyvanakbary.com/"
+            "email": "keyvan@funddy.com"
         }
     ],
     "require": {
@@ -31,7 +30,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "2.0.x-dev"
         }
     }
 }

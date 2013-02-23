@@ -1,18 +1,12 @@
+language: php
+
 php:
+    - 5.3.3
     - 5.3
     - 5.4
 
-node_js:
-    - 0.8
-    - 0.6
-
 before_script:
-    - ROOT_DIR=`pwd`
-    - NODE_ROOT_DIR=$ROOT_DIR/Resources/public/js
-    - sudo apt-get install php5-cli nodejs npm
     - curl -s http://getcomposer.org/installer | php
     - php composer.phar install --dev
-    - cd $NODE_ROOT_DIR && npm install
-    - cd $ROOT_DIR
 
-script: bin/phpunit && cd $NODE_ROOT_DIR && make test
+script: bin/phpunit

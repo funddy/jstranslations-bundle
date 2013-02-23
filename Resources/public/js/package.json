@@ -1,14 +1,10 @@
 {
-    "name": "funddyjstranslations",
-    "version": "0.0.1",
+    "name": "funddytranslations",
+    "version": "2.0.0",
     "engines": {
         "node": "0.6.6"
     },
     "dependencies": {
-        "mocha": "latest",
-        "sinon": "latest",
-        "chai": "latest",
-        "sinon-chai": "latest",
         "coffee-script": "latest"
     }
 }

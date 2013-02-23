@@ -1,3 +1,2 @@
-root = global ? @
-root.FUNDDY ?= {}
-root.FUNDDY.JsTranslations ?= {}
+window.FUNDDY = {}
+window.FUNDDY.JsTranslations ?= {}

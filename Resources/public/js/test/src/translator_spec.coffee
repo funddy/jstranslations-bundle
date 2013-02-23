@@ -1,16 +1,3 @@
-chai = require "chai"
-expect = chai.expect
-should = chai.should()
-sinon = require "sinon"
-
-require "#{__dirname}/../src/namespaces"
-require "#{__dirname}/../src/translator"
-
-require "#{__dirname}/../src/interval"
-require "#{__dirname}/../src/intervalparser"
-require "#{__dirname}/../src/set"
-require "#{__dirname}/../src/setfactory"
-
 describe "Translator", ->
 
   IRRELEVANT_TRANSLATION = "XXXX"
@@ -33,22 +20,22 @@ describe "Translator", ->
   describe "#trans()", ->
 
     it "throws exception if locale doesn't exist", ->
-      expect(-> new FUNDDY.JsTranslations.Translator(translationsData, "fr")).to.throw(Error)
+      expect(-> new FUNDDY.JsTranslations.Translator(translationsData, "fr")).to.throwError()
 
     it "throws exception if translation id doesn't exist", ->
-      expect(-> translator.trans("")).to.throw(Error)
+      expect(-> translator.trans("")).to.throwError()
 
     it "generates valid text", ->
-      expect(translator.trans("id1")).to.eql(IRRELEVANT_TRANSLATION)
+      expect(translator.trans("id1")).to.be(IRRELEVANT_TRANSLATION)
 
     it "replace parameters correctly", ->
-      expect(translator.trans("id2", {"%parameter%": "test"})).to.eql("test")
+      expect(translator.trans("id2", {"%parameter%": "test"})).to.be("test")
 
   describe "#transChoice()", ->
 
     it "throws exception if number doesn't match multiple choice", ->
       intervalParseShouldReturnIntervalsThatNeverContainsNumber()
-      expect(-> translator.transChoice("id3", 1)).to.throw(Error)
+      expect(-> translator.transChoice("id3", 1)).to.throwError()
 
     intervalParseShouldReturnIntervalsThatNeverContainsNumber = ->
       sinon.stub(dummyInterval, "contains").returns(false)
@@ -56,7 +43,7 @@ describe "Translator", ->
 
     it "throws exception if number doesn't match multiple choice", ->
       intervalParseShouldReturnAnIntervalThatContainsTheNumber()
-      translator.transChoice("id3", 0).should.equal("There is no apples")
+      expect(translator.transChoice("id3", 0)).to.be("There is no apples")
 
     intervalParseShouldReturnAnIntervalThatContainsTheNumber = ->
       sinon.stub(dummyInterval, "contains").returns(true)
