@@ -1,4 +1,12 @@
-test:
-	./node_modules/.bin/mocha test/*.coffee -r coffee-script --reporter spec
+all: build test-build
 
-.PHONY: test
+build:
+	cake build
+
+test-build:
+	coffee -c -o test/lib test/src
+
+test-watch:
+	coffee -o test/lib -cw test/src
+
+.PHONY: build test-build test-watch

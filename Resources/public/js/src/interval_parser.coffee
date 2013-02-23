@@ -1,5 +1,4 @@
-root = global ? @
-class root.FUNDDY.JsTranslations.IntervalParser
+class FUNDDY.JsTranslations.IntervalParser
 
   FIRST_CHARACTER_POSITION = 0
   SECOND_CHARACTER_POSITION = 1

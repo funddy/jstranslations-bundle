@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Funddy Translations Tests</title>
+        <link rel="stylesheet" href="vendor/mocha.css" />
+    </head>
+    <body>
+        <div id="mocha"></div>
+        <script src="vendor/expect.js"></script>
+        <script src="vendor/sinon.js"></script>
+        <script src="vendor/mocha.js"></script>
+        <script>mocha.setup('bdd')</script>
+
+        <script src="lib/translator_module_spec.js"></script>
+
+        <script src="../lib/funddytranslations.js"></script>
+
+        <script src="lib/interval_spec.js"></script>
+        <script src="lib/interval_parser_spec.js"></script>
+        <script src="lib/interval_symbol_spec.js"></script>
+        <script src="lib/set_spec.js"></script>
+        <script src="lib/translator_spec.js"></script>
+
+        <script>
+            mocha.run();
+        </script>
+    </body>
+</html>

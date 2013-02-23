@@ -4,3 +4,7 @@ composer.lock
 composer.phar
 node_modules
 bin
+
+# MacOS files
+._.*
+.DS_Store

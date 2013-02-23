@@ -1,5 +1,4 @@
-root = global ? @
-class root.FUNDDY.JsTranslations.Interval
+class FUNDDY.JsTranslations.Interval
 
   POSITIVE_INFINITY = "Inf"
   NEGATIVE_INFINITY = "-Inf"

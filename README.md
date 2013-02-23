@@ -21,7 +21,7 @@ Add the following to your composer.json file:
 ```json
 {
     "require": {
-        "funddy/jstranslations-bundle": "1.0.*"
+        "funddy/jstranslations-bundle": "2.0.*"
     }
 }
 ```
@@ -79,7 +79,7 @@ jstranslations:
 Include the scripts
 ```html
 <script type="text/javascript" src="{{ path('funddy_jstranslations', {locale: app.request.locale}) }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/funddyjstranslations/js/jstranslationstranslator.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/funddyjstranslations/js/lib/funddytranslations.js') }}"></script>
 ```
 
 ### Static Translations
@@ -93,7 +93,7 @@ Compile the translations
 Include translations
 ```html
 <script type="text/javascript" src="{{ asset('js/translations.' ~ app.request.locale ~ '.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/funddyjstranslations/js/jstranslationstranslator.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/funddyjstranslations/js/lib/funddytranslations.js') }}"></script>
 ```
 
 ### Have fun!
@@ -110,9 +110,10 @@ What if you do not want to use the default "Translator" global var and define yo
 runtime and define your own translator.
 ```html
 <script type="text/javascript" src="{{ path('funddy_jstranslations', {locale: app.request.locale}) }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/funddyjstranslations/js/jstranslations.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/funddyjstranslations/js/lib/funddytranslations.js') }}"></script>
 <script type="text/javascript">
     var LOCALE = '...';
+    var TRANSLATIONS = {};
     var MyOwnTranslator = (function() {
         var setFactory = new FUNDDY.JsTranslations.SetFactory();
         var intervalFactory = new FUNDDY.JsTranslations.IntervalFactory();
@@ -123,11 +124,7 @@ runtime and define your own translator.
             intervalSymbolFactory
         );
 
-        var translator = new FUNDDY.JsTranslations.Translator(
-            intervalParser,
-            FUNDDY.JsTranslations.Translations,
-            LOCALE
-        );
+        var translator = new FUNDDY.JsTranslations.Translator(intervalParser, TRANSLATIONS, LOCALE);
 
         return {
             trans: translator.trans

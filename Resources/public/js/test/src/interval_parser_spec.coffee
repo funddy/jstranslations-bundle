@@ -1,14 +1,3 @@
-chai = require "chai"
-expect = chai.expect
-should = chai.should()
-sinon = require "sinon"
-
-require "#{__dirname}/../src/namespaces"
-require "#{__dirname}/../src/setfactory"
-require "#{__dirname}/../src/intervalfactory"
-require "#{__dirname}/../src/intervalsymbolfactory"
-require "#{__dirname}/../src/intervalparser"
-
 describe "IntervalParser", ->
 
   IRRELEVANT_SET = "XXX"
@@ -45,12 +34,12 @@ describe "IntervalParser", ->
 
     it "returns a Set object for a given set string", ->
       testSets = ["{0}", "{0,-3}", "{0,-3,4}"]
-      intervalParser.parse(set).should.equal(IRRELEVANT_SET) for set in testSets
+      expect(intervalParser.parse(set)).to.be(IRRELEVANT_SET) for set in testSets
 
     it "returns a Interval object for a given interval string", ->
       testIntervals = ["]1,2]", "]1,2[", "[1,2]", "[1,2[", "]-1,2]", "]-Inf,Inf]"]
-      intervalParser.parse(interval).should.equal(IRRELEVANT_INTERVAL) for interval in testIntervals
+      expect(intervalParser.parse(interval)).to.be(IRRELEVANT_INTERVAL) for interval in testIntervals
 
     it "throws parse error for malformed input", ->
       malformedStrings = ["]1,", "{}", "}"]
-      expect(-> intervalParser.parse(malformedString)) for malformedString in malformedStrings
+      expect(-> intervalParser.parse(malformedString)).to.throwError() for malformedString in malformedStrings
