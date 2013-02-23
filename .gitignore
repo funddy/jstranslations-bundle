@@ -1,5 +1,5 @@
 phpunit.xml
-vendor
+/vendor
 composer.lock
 composer.phar
 node_modules
