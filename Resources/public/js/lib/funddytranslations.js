@@ -3,7 +3,7 @@
   var _base, _ref,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-  window.FUNDDY = {};
+  window.FUNDDY = window.FUNDDY || {};
 
   if ((_ref = (_base = window.FUNDDY).JsTranslations) == null) {
     _base.JsTranslations = {};
@@ -245,14 +245,7 @@
 
       this.trans = __bind(this.trans, this);
 
-      this.checkLocaleExists();
     }
-
-    Translator.prototype.checkLocaleExists = function() {
-      if (!(this.locale in this.translations)) {
-        throw new Error("There are no transactions with locale '" + this.locale + "'");
-      }
-    };
 
     Translator.prototype.trans = function(id, parameters) {
       var translation;
@@ -270,7 +263,7 @@
 
     Translator.prototype.checkIdExists = function(id) {
       if (!(id in this.translations[this.locale])) {
-        throw new Error("No translation found for id '" + id + "'");
+        throw new Error("No translation found for id '" + id + "' and locale '" + locale + "'");
       }
     };
 

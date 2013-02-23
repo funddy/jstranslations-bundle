@@ -19,13 +19,14 @@ describe "Translator", ->
 
   describe "#trans()", ->
 
-    it "throws exception if locale doesn't exist", ->
-      expect(-> new FUNDDY.JsTranslations.Translator(translationsData, "fr")).to.throwError()
-
     it "throws exception if translation id doesn't exist", ->
       expect(-> translator.trans("")).to.throwError()
 
-    it "generates valid text", ->
+    it "throws exception if translation doesn't exist for a given location", ->
+      translator = new FUNDDY.JsTranslations.Translator(intervalParserStub, translationsData, "en")
+      expect(-> translator.trans("id1")).to.throwError()
+
+    it "translates id", ->
       expect(translator.trans("id1")).to.be(IRRELEVANT_TRANSLATION)
 
     it "replace parameters correctly", ->

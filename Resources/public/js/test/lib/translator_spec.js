@@ -20,17 +20,18 @@
       return translator = new FUNDDY.JsTranslations.Translator(intervalParserStub, translationsData, "es");
     });
     describe("#trans()", function() {
-      it("throws exception if locale doesn't exist", function() {
-        return expect(function() {
-          return new FUNDDY.JsTranslations.Translator(translationsData, "fr");
-        }).to.throwError();
-      });
       it("throws exception if translation id doesn't exist", function() {
         return expect(function() {
           return translator.trans("");
         }).to.throwError();
       });
-      it("generates valid text", function() {
+      it("throws exception if translation doesn't exist for a given location", function() {
+        translator = new FUNDDY.JsTranslations.Translator(intervalParserStub, translationsData, "en");
+        return expect(function() {
+          return translator.trans("id1");
+        }).to.throwError();
+      });
+      it("translates id", function() {
         return expect(translator.trans("id1")).to.be(IRRELEVANT_TRANSLATION);
       });
       return it("replace parameters correctly", function() {

@@ -4,10 +4,6 @@ class FUNDDY.JsTranslations.Translator
   INTERVAL_SEPARATOR = " "
 
   constructor: (@intervalParser, @translations, @locale) ->
-    @checkLocaleExists()
-
-  checkLocaleExists: ->
-    throw new Error("There are no transactions with locale '#{@locale}'") unless (@locale of @translations)
 
   trans: (id, parameters = {}) =>
     translation = @findTranslation(id)
@@ -18,7 +14,7 @@ class FUNDDY.JsTranslations.Translator
     @translations[@locale][id]
 
   checkIdExists: (id) ->
-    throw new Error("No translation found for id '#{id}'") unless (id of @translations[@locale])
+    throw new Error("No translation found for id '#{id}' and locale '#{locale}'") unless (id of @translations[@locale])
 
   replaceParametersWithValues = (text, parameters) ->
     for index, parameter of parameters
