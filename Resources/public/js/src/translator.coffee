@@ -1,5 +1,4 @@
-root = global ? @
-class root.FUNDDY.JsTranslations.Translator
+class FUNDDY.JsTranslations.Translator
 
   MULTIPLE_CHOICES_SEPARATOR = "|"
   INTERVAL_SEPARATOR = " "

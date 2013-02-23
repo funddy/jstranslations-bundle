@@ -1,5 +1,4 @@
-root = global ? @
-class root.FUNDDY.JsTranslations.IntervalSymbol
+class FUNDDY.JsTranslations.IntervalSymbol
 
   LEFT_TYPE = "["
   RIGHT_TYPE = "]"

@@ -3,25 +3,19 @@ fs = require "fs"
 
 appFiles = [
   "namespaces"
-  "intervalsymbol"
-  "intervalsymbolfactory"
+  "interval_symbol"
+  "interval_symbol_factory"
   "interval"
-  "intervalfactory"
+  "interval_factory"
   "set"
-  "setfactory"
-  "intervalparser"
+  "set_factory"
+  "interval_parser"
   "translator"
+  "translator_module"
 ]
 
-routerModule = "translatormodule"
-
-option "-t", "--translator", "include the translator module"
-
 task "build", "Build JS translations file", (options) ->
-  output = "jstranslations"
-  if ("translator" of options)
-    appFiles.push routerModule
-    output = "jstranslationstranslator"
+  output = "funddytranslations"
   appContents = new Array remaining = appFiles.length
   for file, index in appFiles then do (file, index) ->
     fs.readFile "src/#{file}.coffee", 'utf8', (err, fileContents) ->

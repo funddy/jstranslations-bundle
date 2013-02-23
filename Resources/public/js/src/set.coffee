@@ -1,5 +1,4 @@
-root = global ? @
-class root.FUNDDY.JsTranslations.Set
+class FUNDDY.JsTranslations.Set
 
   constructor: (@data) ->
 
