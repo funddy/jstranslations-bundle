@@ -263,7 +263,7 @@
 
     Translator.prototype.checkIdExists = function(id) {
       if (!(id in this.translations[this.locale])) {
-        throw new Error("No translation found for id '" + id + "' and locale '" + locale + "'");
+        throw new Error("No translation found for id '" + id + "' and locale '" + this.locale + "'");
       }
     };
 
