@@ -65,9 +65,9 @@ funddy_js_translations:
 Now it's time to decide whether you want to use static or dynamic generated translations.
 
 ### Dynamic Translations
-This is the most flexible option. Every time you make a change in exposed routes you'll be able to access them from
+This is the most flexible option. Every time you make a change in translations you'll be able to access them from
 JavaScript. It's ideal for development environment or for those cases where you performance is not an issue. As
-everything in life, you have to pay a price, which is invoking an URL to regenerate all routes every time you make a
+everything in life, you have to pay a price, which is invoking an URL to regenerate all translations every time you make a
 request.
 
 Include FunddyJsTranslationsBundle routing
