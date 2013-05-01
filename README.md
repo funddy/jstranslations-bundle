@@ -8,7 +8,7 @@ similar way.
 
 Setup and Configuration
 -----------------------
-First, you should have the Translator enabled at config.yml
+First, you should have the Translator enabled at `config.yml`
 ```yaml
 # ...
 framework:
@@ -31,7 +31,7 @@ Update the vendor libraries:
     curl -s http://getcomposer.org/installer | php
     php composer.phar install
 
-Register the Bundle FunddyJsTranslationsBundle in app/AppKernel.php.
+Register the Bundle FunddyJsTranslationsBundle in `app/AppKernel.php`.
 ```php
 // ...
 public function registerBundles()
@@ -46,7 +46,7 @@ public function registerBundles()
 ```
 
 For finishing, override the default translator with one which implements the ReadableTranslator interface at
-parameters.yml file
+`parameters.yml` file
 ```yaml
 parameters:
     # ...
