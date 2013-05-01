@@ -132,6 +132,6 @@ runtime and define your own translator.
         };
     })();
 
-    var route = MyOwnTranslator.trans('Hello %name%!', {'%name%': 'Charlie'});
+    var translation = MyOwnTranslator.trans('Hello %name%!', {'%name%': 'Charlie'});
 </script>
 ```
