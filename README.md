@@ -8,13 +8,10 @@ similar way.
 
 Setup and Configuration
 -----------------------
-First, you should have the Translator enabled at `config.yml`
+First, you should have the Translator enabled at `app/config.yml`
 ```yaml
-# ...
 framework:
-    # ...
     translator: { fallback: en }
-# ...
 ```
 
 Add the following to your composer.json file:
@@ -33,23 +30,18 @@ Update the vendor libraries:
 
 Register the Bundle FunddyJsTranslationsBundle in `app/AppKernel.php`.
 ```php
-// ...
 public function registerBundles()
 {
     $bundles = array(
-        // ...
         new Funddy\Bundle\JsTranslationsBundle\FunddyJsTranslationsBundle()
-        // ...
     );
-    // ...
 }
 ```
 
 For finishing, override the default translator with one which implements the ReadableTranslator interface at
-`parameters.yml` file
+`app/parameters.yml` file
 ```yaml
 parameters:
-    # ...
     translator.class: Funddy\Bundle\JsTranslationsBundle\ReadableTranslator\SymfonyReadableTranslator
 ```
 
@@ -70,7 +62,7 @@ JavaScript. It's ideal for development environment or for those cases where you 
 everything in life, you have to pay a price, which is invoking an URL to regenerate all translations every time you make a
 request.
 
-Include FunddyJsTranslationsBundle routing
+Include FunddyJsTranslationsBundle routing at `app/routing.yml`
 ```yaml
 jstranslations:
     resource: "@FunddyJsTranslationsBundle/Resources/config/routing.yml"
