@@ -14,7 +14,7 @@ framework:
     translator: { fallback: en }
 ```
 
-Add the following to your composer.json file:
+Add the following to your `composer.json` file:
 ```json
 {
     "require": {
