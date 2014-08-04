@@ -1,13 +1,11 @@
-FunddyJsTranslationsBundle
-==========================
+# JavaScript Translations Bundle
 
 [![Build Status](https://secure.travis-ci.org/funddy/jstranslations-bundle.png?branch=master)](http://travis-ci.org/funddy/jstranslations-bundle)
 
 This bundle enables you to use your Symfony translator from JavaScript, allowing the generate translations in a very
 similar way.
 
-Setup and Configuration
------------------------
+## Setup and Configuration
 First, you should have the Translator enabled at `app/config.yml`
 ```yaml
 framework:
@@ -45,8 +43,7 @@ parameters:
     translator.class: Funddy\Bundle\JsTranslationsBundle\ReadableTranslator\SymfonyReadableTranslator
 ```
 
-Usage
------
+## Usage
 Expose the translations that you want to have accessible from your JavaScript code adding the languages and domains to
 the bundle configuration
 ```yaml
@@ -70,8 +67,9 @@ jstranslations:
 
 Include the scripts
 ```html
-<script type="text/javascript" src="{{ path('funddy_jstranslations', {locale: app.request.locale}) }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/funddyjstranslations/js/lib/funddytranslations.js') }}"></script>
+<script>var TRANSLATIONS_LOCALE = "{{ app.request.locale }}"</script>
+<script src="{{ path('funddy_jstranslations', {locale: app.request.locale}) }}"></script>
+<script src="{{ asset('bundles/funddyjstranslations/js/lib/funddytranslations.js') }}"></script>
 ```
 
 ### Static Translations
@@ -84,39 +82,37 @@ Compile the translations
 
 Include translations
 ```html
-<script type="text/javascript" src="{{ asset('js/translations.' ~ app.request.locale ~ '.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/funddyjstranslations/js/lib/funddytranslations.js') }}"></script>
+<script>var TRANSLATIONS_LOCALE = '{{ app.request.locale }}'</script>
+<script src="{{ asset('js/translations.' ~ app.request.locale ~ '.js') }}"></script>
+<script src="{{ asset('bundles/funddyjstranslations/js/lib/funddytranslations.js') }}"></script>
 ```
 
 ### Have fun!
 ```html
-<script type="text/javascript">
-    var translation = Translator.trans('Hello %name%!', {'%name%': 'Charlie'});
-    var translation = Translator.transChoice('{1} There is one apple|]1,19] There are %count% apples', 3, {'%count%': 3});
+<script>
+    console.log(Translator.trans('Hello %name%!', {'%name%': 'Charlie'})); //Hello Charlie!
+    console.log(Translator.transChoice('{1} There is one apple|]1,19] There are %count% apples', 3, {'%count%': 3}));//There are 3 apples
 </script>
 ```
 
-Defining Your Own Translator
-----------------------------
+## Defining Your Own Translator
 What if you do not want to use the default "Translator" global var and define your own? Easy, include only translations
 runtime and define your own translator.
 ```html
-<script type="text/javascript" src="{{ path('funddy_jstranslations', {locale: app.request.locale}) }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/funddyjstranslations/js/lib/funddytranslations.js') }}"></script>
-<script type="text/javascript">
-    var LOCALE = '...';
-    var TRANSLATIONS = {};
+<script src="{{ path('funddy_jstranslations', {locale: app.request.locale}) }}"></script>
+<script src="{{ asset('bundles/funddyjstranslations/js/lib/funddytranslations.js') }}"></script>
+<script>
+    var LOCALE = '{{ app.request.locale }}';
     var MyOwnTranslator = (function() {
-        var setFactory = new FUNDDY.JsTranslations.SetFactory();
-        var intervalFactory = new FUNDDY.JsTranslations.IntervalFactory();
-        var intervalSymbolFactory = new FUNDDY.JsTranslations.IntervalSymbolFactory();
-        var intervalParser = new FUNDDY.JsTranslations.IntervalParser(
-            setFactory,
-            intervalFactory,
-            intervalSymbolFactory
-        );
-
-        var translator = new FUNDDY.JsTranslations.Translator(intervalParser, TRANSLATIONS, LOCALE);
+        var translator =
+            new FUNDDY.JsTranslations.Translator(
+                new FUNDDY.JsTranslations.IntervalParser(
+                    new FUNDDY.JsTranslations.SetFactory(),
+                    new FUNDDY.JsTranslations.IntervalFactory(),
+                    new FUNDDY.JsTranslations.IntervalSymbolFactory()
+                ),
+                TRANSLATIONS, LOCALE
+            );
 
         return {
             trans: translator.trans
@@ -124,6 +120,6 @@ runtime and define your own translator.
         };
     })();
 
-    var translation = MyOwnTranslator.trans('Hello %name%!', {'%name%': 'Charlie'});
+    console.log(MyOwnTranslator.trans('Hello %name%!', {'%name%': 'Charlie'}));//Hello Charlie!
 </script>
 ```
