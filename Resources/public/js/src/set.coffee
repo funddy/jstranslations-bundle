@@ -4,5 +4,5 @@ class FUNDDY.JsTranslations.Set
 
   contains: (number) ->
     for dataNumber in @data
-      return true if parseInt(dataNumber) is number
+      return parseInt(dataNumber) is number
     false
